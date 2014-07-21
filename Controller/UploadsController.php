@@ -53,7 +53,7 @@ class UploadsController extends UploadsAppController {
     public function admin_upload_image(){
         if(!empty($this->data)){
             $this->autoRender = false;
-            $uploadDir = APP. "webroot/img";
+            $uploadDir = APP. "Plugin/Uploads/webroot/img";
             
             $this->request->data['Upload']['file_name'] = $this->Upload->does_file_exist("{$uploadDir}/", 
                                                                                  $this->request->data['Upload']['upload']['name']);
@@ -66,7 +66,7 @@ class UploadsController extends UploadsAppController {
             
             if($fileMoved !== false){
                 if($this->Upload->save($this->request->data)){
-                    echo "https://{$_SERVER['SERVER_NAME']}/img/{$this->request->data['Upload']['upload']['name']}";
+                    echo "https://{$_SERVER['SERVER_NAME']}/uploads/img/{$this->request->data['Upload']['upload']['name']}";
                 }else{
                     unlink($this->request->data['Upload']['file_path']);
                     echo 0;
